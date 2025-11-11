@@ -1,0 +1,9 @@
+npm init
+npm i prompt-sync
+npm install -g pkg
+pkg 파일.js --targets node18-win-x64
+node 파일.js => 파일 실행
+
+npm install express
+npm install exceljs
+npm install nodemon
