@@ -6,4 +6,4 @@ node 파일.js => 파일 실행
 
 npm install express
 npm install exceljs
-npm install nodemon
+npm install -g nodemon
