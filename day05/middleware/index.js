@@ -3,7 +3,6 @@ const morgan = require("morgan");
 const joi = require("joi");
 const { responseFormatter } = require("./func");
 const { members } = require("./data");
-const Joi = require("joi");
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
