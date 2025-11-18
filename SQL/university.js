@@ -11,24 +11,13 @@ const getRandomInteger = (min, max) => {
 
 const makePerson = () => {
   const randomName = new Faker({ locale: [ko] }).person.fullName();
-
-  const gender = chance.weighted(["male", "female"], [60, 40]);
-  const salary = getRandomInteger(3000, 30000);
-  const departments = chance.weighted(
-    ["marketing", "IT", "advertising", "design", "finance"],
-    [50, 10, 20, 10, 10]
-  );
-  const position = chance.weighted(
-    ["intern", "assistant", "manager", "header"],
-    [10, 50, 30, 10]
-  );
+  const grade = chance.weighted([1, 2, 3, 4, 5, 6], [30, 30, 20, 10, 5, 5]);
+  const department_id = getRandomInteger(1, 8);
 
   return {
     name: randomName,
-    gender,
-    salary,
-    departments,
-    position,
+    grade,
+    department_id,
   };
 };
 
@@ -38,17 +27,15 @@ const generateExcel = async () => {
 
   sheet.columns = [
     { header: "Name", key: "name" },
-    { header: "Gender", key: "gender" },
-    { header: "Salary", key: "salary" },
-    { header: "Departments", key: "departments" },
-    { header: "Position", key: "position" },
+    { header: "Grade", key: "grade" },
+    { header: "Department_id", key: "department_id" },
   ];
 
-  for (let i = 0; i < 3000; i++) {
+  for (let i = 0; i < 30000; i++) {
     sheet.addRow(makePerson());
   }
 
-  await workbook.csv.writeFile("mzoffice.csv");
+  await workbook.csv.writeFile("students.csv");
 };
 
 generateExcel();
