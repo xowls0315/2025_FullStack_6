@@ -1,0 +1,8 @@
+npm init -y
+npm install
+npm install express
+npm install -g nodemon
+npm install prisma@6 @prisma/client@6
+npx prisma init
+npx prisma db pull
+npx prisma generate

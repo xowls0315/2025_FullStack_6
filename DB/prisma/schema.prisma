@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:1234@localhost:3306/koreait"
+}
+
+model boards {
+  id       Int        @id @default(autoincrement())
+  author   String     @default("글쓴이") @db.VarChar(100)
+  title    String     @db.VarChar(100)
+  contents String     @db.Text
+  comments comments[]
+}
+
+model comments {
+  id       Int    @id @default(autoincrement())
+  author   String @default("댓글러") @db.VarChar(100)
+  contents String @db.VarChar(300)
+  board_id Int
+  boards   boards @relation(fields: [board_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "comments_ibfk_1")
+
+  @@index([board_id], map: "board_id")
+}
+
+model users {
+  id       String @id @db.VarChar(30)
+  password String @db.VarChar(100)
+  nickname String @db.VarChar(30)
+}
+
