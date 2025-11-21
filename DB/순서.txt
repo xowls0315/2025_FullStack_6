@@ -4,5 +4,8 @@ npm install express
 npm install -g nodemon
 npm install prisma@6 @prisma/client@6
 npx prisma init
-npx prisma db pull
-npx prisma generate
+- config.ts 삭제
+- 스키마 프리즈마에서 환경설정
+npx prisma db pull => db에 스키마를 가져옴
+npx prisma generate  => 스키마를 자바스크립트 코드로 바꿈
+npm install @prisma/client@6 => epxress랑 prisma 연결해주는 라이브러리
