@@ -25,6 +25,11 @@ export const responseMiddleware = (req, res, next) => {
     return res.status(statusCode).json(response);
   };
 
+  // 인증 실패 응답 (401 Unauthorized)
+  res.unAuthorized = (message = "인증이 필요합니다.") => {
+    return res.error(message, 401);
+  };
+
   // 리소스 응답 없음 (404 Not Found)
   res.notFound = (message = "요청하신 리소스를 찾을 수 없습니다.") => {
     return res.error(message, 404);
