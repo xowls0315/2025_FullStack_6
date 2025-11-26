@@ -24,28 +24,28 @@ export const getPosts = async (req, res) => {
   const limit = Number(req.query.limit) || 10;
   const skip = (page - 1) * limit;
 
-  const [items, total] = await Promise.all([
-    prisma.posts.findMany({
-      skip,
-      take: limit,
-      orderBy: { created_at: "desc" },
-      select: {
-        id: true,
-        title: true,
-        author_id: true,
-        created_at: true,
-      },
-    }),
-    prisma.posts.count(),
-  ]);
-
-  return res.success({
-    items,
-    page,
-    limit,
-    total,
-    totalPages: Math.ceil(total / limit),
+  const posts = await prisma.posts.findMany({
+    skip,
+    take: limit,
+    orderBy: { created_at: "desc" },
+    select: {
+      id: true,
+      title: true,
+      author_id: true,
+      created_at: true,
+    },
   });
+
+  // 🔹 Prisma 결과를 API 응답용 형태로 가공
+  const data = posts.map((post) => ({
+    id: post.id,
+    title: post.title,
+    authorId: post.author_id,
+    createdAt: post.created_at,
+  }));
+
+  // 🔹 data = 배열 형태로 바로 반환
+  return res.success(data);
 };
 
 // GET /posts/:postId
