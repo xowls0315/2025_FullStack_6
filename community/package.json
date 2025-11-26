@@ -1,0 +1,30 @@
+{
+  "name": "community",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "pg": "npx prisma generate",
+    "pp": "npx prisma db pull",
+    "ps": "npx prisma studio"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^6.19.0",
+    "bcrypt": "^6.0.0",
+    "celebrate": "^15.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-boom": "^3.0.0",
+    "joi": "^18.0.2",
+    "prisma": "^6.19.0",
+    "uuid": "^13.0.0"
+  }
+}
